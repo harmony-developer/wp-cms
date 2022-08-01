@@ -394,6 +394,7 @@ final class _WP_Editors {
 						'hr',
 						'lists',
 						'media',
+						'link',
 						'paste',
 						'tabfocus',
 						'textcolor',
@@ -402,7 +403,6 @@ final class _WP_Editors {
 						'wpautoresize',
 						'wpeditimage',
 						'wpgallery',
-						'wplink',
 						'wpdialogs',
 						'wptextpattern',
 						'wpview',
@@ -730,7 +730,6 @@ final class _WP_Editors {
 				( '{' == $value[0] && '}' == $value[ strlen( $value ) - 1 ] ) ||
 				( '[' == $value[0] && ']' == $value[ strlen( $value ) - 1 ] ) ||
 				preg_match( '/^\(?function ?\(/', $value ) ) ) {
-
 				$options .= $key . ':' . $value . ',';
 				continue;
 			}
