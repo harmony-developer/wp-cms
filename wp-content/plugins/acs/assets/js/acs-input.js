@@ -3001,6 +3001,7 @@
 
 })(jQuery);
 
+
 (function($, undefined){
 	
 	var Field = acs.Field.extend({
@@ -3422,6 +3423,43 @@
 	acs.registerFieldType( Field );
 	
 })(jQuery);
+
+(function($, undefined){
+
+	var Field = acs.Field.extend({
+
+		type: 'acs_slug',
+
+		events: {
+			'input input': 'onInput',
+			'focusout input': 'onFocusOut',
+		},
+
+		onInput: function(e, $el) {
+
+			$el.val($el.val().toLowerCase()
+				.replace(/\s+/g, '-') // Replace spaces with -
+				.replace(/[^\w\-]+/g, '') // Remove all non-word chars
+				.replace(/\-\-+/g, '-') // Replace multiple - with single -
+				.replace(/\_\_+/g, '_') // Replace multiple _ with single _
+				.replace(/^-+/, '')); // Trim - from start of text
+
+		},
+
+		onFocusOut: function(e, $el) {
+
+			$el.val($el.val().toLowerCase()
+				.replace(/-+$/, '') // Trim - from end of text
+				.replace(/_+$/, '')); // Trim _ from end of text
+
+		},
+
+	});
+
+	acs.registerFieldType( Field );
+
+})(jQuery);
+
 
 (function($, undefined){
 	

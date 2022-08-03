@@ -254,6 +254,8 @@ class ACS {
 		acs_include('includes/fields/class-acs-field-flexible-content.php');
 		acs_include('includes/fields/class-acs-field-gallery.php');
 		acs_include('includes/fields/class-acs-field-repeater.php');
+		acs_include('includes/fields/class-acs-field-slug.php');
+		acs_include('includes/fields/class-acs-field-taxonomies.php');
 		
 		/**
 		 * Fires after field types have been included.
@@ -319,6 +321,12 @@ class ACS {
 		 * @param	int $major_version The major version of ACS.
 		 */
 		do_action( 'acs/init', ACS_MAJOR_VERSION );
+
+		// Include modules
+		acs_include('includes/core/settings.php');
+		acs_include('includes/modules/module.php');
+		acs_include('includes/modules/post-types.php');
+		acs_include('includes/modules/taxonomies.php');
 	}
 	
 	/**

@@ -619,6 +619,17 @@ function acs_get_sub_array( $array, $keys ) {
 	
 }
 
+/*
+ * ACFE: Unset
+ * Safely remove an array key
+ */
+function acs_unset(&$array, $key){
+
+	if(isset($array[$key]))
+		unset($array[$key]);
+
+}
+
 
 /**
 *  acs_get_post_types
@@ -3070,10 +3081,25 @@ function acs_is_screen( $id = '' ) {
 */
 
 function acs_maybe_get( $array = array(), $key = 0, $default = null ) {
-	
+
+	if(is_object($array)){
+		return isset($array->{$key}) ? $array->{$key} : $default;
+	}
+
 	return isset( $array[$key] ) ? $array[$key] : $default;
 		
 }
+
+/*
+ * ACS: Maybe Get REQUEST
+ * Similar to acs_maybe_get_POST() but works with $_REQUEST
+ */
+function acs_maybe_get_REQUEST($key = '', $default = null){
+
+	return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default;
+
+}
+
 
 function acs_maybe_get_POST( $key = '', $default = null ) {
 	

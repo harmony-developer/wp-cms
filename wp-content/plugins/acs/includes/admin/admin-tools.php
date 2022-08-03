@@ -172,6 +172,14 @@ class acs_admin_tools {
 		acs_include('includes/admin/tools/class-acs-admin-tool.php');
 		acs_include('includes/admin/tools/class-acs-admin-tool-export.php');
 		acs_include('includes/admin/tools/class-acs-admin-tool-import.php');
+
+        // extended
+		acs_include('includes/admin/tools/module-export.php');
+		acs_include('includes/admin/tools/module-import.php');
+		acs_include('includes/admin/tools/post-types-export.php');
+		acs_include('includes/admin/tools/post-types-import.php');
+		acs_include('includes/admin/tools/taxonomies-export.php');
+		acs_include('includes/admin/tools/taxonomies-import.php');
 		
 		
 		// action
