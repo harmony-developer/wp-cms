@@ -291,6 +291,7 @@ class ACS {
 		acs_include('includes/locations/class-acs-location-nav-menu-item.php');
 		acs_include('includes/locations/class-acs-location-block.php');
 		acs_include('includes/locations/class-acs-location-options-page.php');
+		acs_include('includes/locations/class-acs-location-post-type-archive.php');
 		
 		/**
 		 * Fires after location types have been included.

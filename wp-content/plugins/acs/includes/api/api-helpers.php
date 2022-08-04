@@ -677,6 +677,35 @@ function acs_get_post_types( $args = array() ) {
 	return $post_types;
 }
 
+/*
+ * ACS: Get Post Types Objects
+ * Query & retrieve post types objects
+ */
+function acs_get_post_type_objects($args = array()){
+
+	// vars
+	$return = array();
+
+	// Post Types
+	$posts_types = acs_get_post_types($args);
+
+	// Choices
+	if(!empty($posts_types)){
+
+		foreach($posts_types as $post_type){
+
+			$post_type_object = get_post_type_object($post_type);
+
+			$return[$post_type_object->name] = $post_type_object;
+
+		}
+
+	}
+
+	return $return;
+
+}
+
 function acs_get_pretty_post_types( $post_types = array() ) {
 	
 	// get post types
@@ -767,6 +796,63 @@ function acs_get_post_type_label( $post_type ) {
 	// return
 	return $label;
 	
+}
+
+
+/*
+ * ACS: Is Admin Screen
+ * Check if the current admin screen is ACS Field Group UI, ACS tools, ACS Updates screens etc...
+ */
+function acs_is_admin_screen($modules = false){
+
+	// bail early if not defined
+	if(!function_exists('get_current_screen'))
+		return false;
+
+	// vars
+	$screen = get_current_screen();
+
+	// no screen
+	if(!$screen)
+		return false;
+
+	$post_types = array(
+		'acs-field-group',
+		'acs-dpt',
+		'acs-dt',
+	);
+
+	if(in_array($screen->post_type, $post_types))
+		return true;
+
+	return false;
+
+}
+
+
+
+/*
+ * ACS: Array Insert After
+ * Insert data after a specific array key
+ */
+function acs_array_insert_after($key, array &$array, $new_key, $new_value){
+
+	if(!array_key_exists($key, $array))
+		return $array;
+
+	$new = array();
+
+	foreach($array as $k => $value){
+
+		$new[$k] = $value;
+
+		if($k === $key)
+			$new[$new_key] = $new_value;
+
+	}
+
+	return $new;
+
 }
 
 

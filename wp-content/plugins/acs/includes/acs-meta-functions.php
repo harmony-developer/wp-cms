@@ -93,7 +93,7 @@ function acs_get_option_meta( $prefix = '' ) {
 		OR option_name LIKE %s",
 		$search,
 		$_search 
-	), ARRAY_A);
+	), 'associative_array');
 	
 	// Loop over results and append meta (removing the $prefix from the option name).
 	$len = strlen("{$prefix}_");
